@@ -1,0 +1,307 @@
+{% extends "portfolio/base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+<style>
+    /* Projects Page Styles */
+    #projects-page .projects-intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 50px;
+    }
+
+    #projects-page .project-filters {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        gap: 10px;
+    }
+
+    #projects-page .project-filter {
+        background: transparent;
+        border: 1px solid var(--primary-blue);
+        color: var(--text-medium);
+        padding: 10px 20px;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all var(--transition-speed) ease;
+    }
+
+    #projects-page .project-filter:hover,
+    #projects-page .project-filter.active {
+        background-color: var(--primary-blue);
+        color: var(--text-light);
+        box-shadow: 0 5px 15px var(--shadow-color);
+    }
+
+    #projects-page .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 30px;
+    }
+
+    #projects-page .project-card {
+        background-color: var(--bg-light);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #projects-page .project-image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-bottom: 1px solid rgba(0, 123, 255, 0.2);
+    }
+
+    #projects-page .project-content {
+        padding: 25px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #projects-page .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    #projects-page .project-tag {
+        background-color: rgba(0, 123, 255, 0.15);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: var(--primary-blue);
+    }
+
+    #projects-page .project-title {
+        font-size: 1.4rem;
+        color: var(--text-light);
+        margin-bottom: 10px;
+    }
+
+    #projects-page .project-description {
+        color: var(--text-medium);
+        margin-bottom: 20px;
+        flex-grow: 1;
+    }
+
+    #projects-page .project-links {
+        display: flex;
+        gap: 15px;
+    }
+
+    #projects-page .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent-blue);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all var(--transition-speed) ease;
+    }
+
+    #projects-page .project-link:hover {
+        color: var(--text-light);
+        transform: translateY(-3px);
+    }
+
+    #projects-page .project-link i {
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+        #projects-page .project-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="projects-page" class="page-content">
+    <div class="projects-intro reveal-on-scroll">
+        <h2>My Projects</h2>
+        <p>Here's a collection of my recent work, showcasing a range of technical skills and creative problem-solving. Each project represents unique challenges and innovative solutions.</p>
+    </div>
+    
+    <div class="project-filters reveal-on-scroll">
+        <button class="project-filter active" data-filter="all">All</button>
+        <button class="project-filter" data-filter="web">Web Development</button>
+        <button class="project-filter" data-filter="mobile">Mobile Apps</button>
+        <button class="project-filter" data-filter="ui">UI/UX Design</button>
+    </div>
+    
+    <div class="project-grid">
+        <!-- Project 1 -->
+        <div class="project-card reveal-on-scroll" data-category="web ui">
+            <img src="https://placehold.co/600x400/1A2033/e0e7ff?text=E-Commerce+Platform" alt="E-Commerce Platform" class="project-image">
+            <div class="project-content">
+                <div class="project-tags">
+                    <span class="project-tag">React</span>
+                    <span class="project-tag">Node.js</span>
+                    <span class="project-tag">MongoDB</span>
+                </div>
+                <h4 class="project-title">Modern E-Commerce Platform</h4>
+                <p class="project-description">A full-featured online shopping platform with real-time inventory management, secure payment processing, and responsive design for optimal mobile experience.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project-card reveal-on-scroll" data-category="mobile ui">
+            <img src="https://placehold.co/600x400/1A2033/e0e7ff?text=Fitness+Tracker+App" alt="Fitness Tracker App" class="project-image">
+            <div class="project-content">
+                <div class="project-tags">
+                    <span class="project-tag">React Native</span>
+                    <span class="project-tag">Firebase</span>
+                    <span class="project-tag">GraphQL</span>
+                </div>
+                <h4 class="project-title">Fitness Tracker Mobile App</h4>
+                <p class="project-description">A comprehensive fitness tracking application with workout plans, progress visualization, and social features for sharing achievements with friends.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> App Store</a>
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="project-card reveal-on-scroll" data-category="web">
+            <img src="https://placehold.co/600x400/1A2033/e0e7ff?text=Analytics+Dashboard" alt="Analytics Dashboard" class="project-image">
+            <div class="project-content">
+                <div class="project-tags">
+                    <span class="project-tag">Vue.js</span>
+                    <span class="project-tag">D3.js</span>
+                    <span class="project-tag">Express</span>
+                </div>
+                <h4 class="project-title">Real-time Analytics Dashboard</h4>
+                <p class="project-description">An interactive data visualization platform that processes and displays complex business metrics in real-time, with customizable widgets and report generation.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 4 -->
+        <div class="project-card reveal-on-scroll" data-category="ui">
+            <img src="https://placehold.co/600x400/1A2033/e0e7ff?text=Travel+Platform+Design" alt="Travel Platform Design" class="project-image">
+            <div class="project-content">
+                <div class="project-tags">
+                    <span class="project-tag">Figma</span>
+                    <span class="project-tag">Adobe XD</span>
+                    <span class="project-tag">UI/UX</span>
+                </div>
+                <h4 class="project-title">Travel Platform UI/UX Design</h4>
+                <p class="project-description">A comprehensive user interface design for a travel booking platform, featuring intuitive navigation, engaging visuals, and a streamlined booking process.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Case Study</a>
+                    <a href="#" class="project-link"><i class="fab fa-behance"></i> Behance</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 5 -->
+        <div class="project-card reveal-on-scroll" data-category="web">
+            <img src="https://placehold.co/600x400/1A2033/e0e7ff?text=Content+Management" alt="Content Management System" class="project-image">
+            <div class="project-content">
+                <div class="project-tags">
+                    <span class="project-tag">Laravel</span>
+                    <span class="project-tag">MySQL</span>
+                    <span class="project-tag">Bootstrap</span>
+                </div>
+                <h4 class="project-title">Enterprise CMS Platform</h4>
+                <p class="project-description">A custom content management system for large organizations, with role-based access control, workflow management, and multi-language support.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 6 -->
+        <div class="project-card reveal-on-scroll" data-category="mobile web">
+            <img src="https://placehold.co/600x400/1A2033/e0e7ff?text=Social+Media+App" alt="Social Media App" class="project-image">
+            <div class="project-content">
+                <div class="project-tags">
+                    <span class="project-tag">Flutter</span>
+                    <span class="project-tag">Dart</span>
+                    <span class="project-tag">Firebase</span>
+                </div>
+                <h4 class="project-title">Community Connect App</h4>
+                <p class="project-description">A cross-platform social networking application focused on connecting people with similar interests in local communities, featuring event discovery and messaging.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Play Store</a>
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Project filtering functionality
+        const filterButtons = document.querySelectorAll('.project-filter');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Update active state on buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter projects
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category')?.split(' ') || [];
+                    
+                    if (filterValue === 'all' || categories.includes(filterValue)) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 400); // Match with CSS transition duration
+                    }
+                });
+            });
+        });
+        
+        // Project card tilt effect
+        projectCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const rotateX = (y / (rect.height / 2)) * -7; // Max tilt 7 degrees
+                const rotateY = (x / (rect.width / 2)) * 7;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+        });
+    });
+</script>
+{% endblock %}

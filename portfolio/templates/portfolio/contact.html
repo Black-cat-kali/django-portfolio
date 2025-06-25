@@ -1,0 +1,313 @@
+{% extends "portfolio/base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+<style>
+    /* Contact Page Styles */
+    #contact-page .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: start;
+    }
+
+    #contact-page .contact-info {
+        background-color: var(--bg-light);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    #contact-page .contact-method {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    #contact-page .contact-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        color: var(--text-light);
+        font-size: 1.5rem;
+        box-shadow: 0 5px 15px var(--shadow-color);
+    }
+
+    #contact-page .contact-details h4 {
+        color: var(--text-light);
+        margin-bottom: 5px;
+    }
+
+    #contact-page .contact-details p,
+    #contact-page .contact-details a {
+        color: var(--text-medium);
+        text-decoration: none;
+        transition: color var(--transition-speed) ease;
+    }
+
+    #contact-page .contact-details a:hover {
+        color: var(--accent-blue);
+    }
+
+    #contact-page .contact-form-container {
+        background-color: var(--bg-light);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    #contact-page .form-group {
+        margin-bottom: 25px;
+    }
+
+    #contact-page .form-label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--text-light);
+        font-weight: 600;
+    }
+
+    #contact-page .form-control {
+        width: 100%;
+        padding: 15px;
+        background-color: var(--bg-medium);
+        border: 1px solid transparent;
+        border-radius: 8px;
+        color: var(--text-light);
+        font-family: var(--font-primary);
+        font-size: 1rem;
+        transition: all var(--transition-speed) ease;
+    }
+
+    #contact-page .form-control:focus {
+        border-color: var(--primary-blue);
+        outline: none;
+        box-shadow: 0 0 0 3px var(--shadow-color);
+    }
+
+    #contact-page textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+    }
+
+    #contact-page .social-links-box {
+        margin-top: 40px;
+    }
+
+    #contact-page .social-links-box h3 {
+        margin-bottom: 20px;
+    }
+
+    #contact-page .social-links-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    #contact-page .social-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        padding: 20px 10px;
+        border-radius: 10px;
+        background-color: var(--bg-light);
+        transition: all var(--transition-speed) ease;
+    }
+
+    #contact-page .social-link:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        background-color: var(--bg-medium);
+    }
+
+    #contact-page .social-icon {
+        font-size: 1.8rem;
+        color: var(--primary-blue);
+        transition: color var(--transition-speed) ease;
+        margin-bottom: 10px;
+    }
+
+    #contact-page .social-link:hover .social-icon {
+        color: var(--accent-blue);
+    }
+
+    #contact-page .social-name {
+        color: var(--text-light);
+        font-size: 0.9rem;
+    }
+
+    #form-submission-message {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        display: none;
+    }
+
+    #form-submission-message.success {
+        display: block;
+        background-color: rgba(39, 201, 63, 0.1);
+        border: 1px solid rgba(39, 201, 63, 0.5);
+        color: #27C93F;
+    }
+
+    #form-submission-message.error {
+        display: block;
+        background-color: rgba(255, 95, 86, 0.1);
+        border: 1px solid rgba(255, 95, 86, 0.5);
+        color: #FF5F56;
+    }
+
+    @media (max-width: 900px) {
+        #contact-page .contact-container {
+            grid-template-columns: 1fr;
+        }
+        
+        #contact-page .social-links-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 480px) {
+        #contact-page .social-links-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        #contact-page .contact-method {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        #contact-page .contact-icon {
+            margin-right: 0;
+            margin-bottom: 15px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="contact-page" class="page-content">
+    <h2>Get In Touch</h2>
+    <p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hello, I'll try my best to get back to you!</p>
+    
+    <div class="contact-container">
+        <div class="contact-info reveal-on-scroll">
+            <h3>Contact Information</h3>
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <i class="far fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Email</h4>
+                    <p><a href="mailto:contact@abhiyank.in">contact@abhiyank.in</a></p>
+                </div>
+            </div>
+            
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Phone</h4>
+                    <p><a href="tel:+91XXXXXXXXXX">+91 XX-XXXX-XXXX</a></p>
+                </div>
+            </div>
+            
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Location</h4>
+                    <p>New Delhi, India</p>
+                </div>
+            </div>
+            
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <i class="far fa-clock"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Working Hours</h4>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM IST</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form-container reveal-on-scroll">
+            <h3>Send Me a Message</h3>
+            
+            <div id="form-submission-message"></div>
+            
+            <form id="contact-form" action="https://formsubmit.co/contact@abhiyank.in" method="POST">
+                <div class="form-group">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" class="form-label">Your Message</label>
+                    <textarea id="message" name="message" class="form-control" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="social-links-box reveal-on-scroll">
+        <h3>Connect With Me</h3>
+        <div class="social-links-grid">
+            <a href="https://github.com" target="_blank" class="social-link">
+                <i class="fab fa-github social-icon"></i>
+                <span class="social-name">GitHub</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="social-link">
+                <i class="fab fa-linkedin-in social-icon"></i>
+                <span class="social-name">LinkedIn</span>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="social-link">
+                <i class="fab fa-twitter social-icon"></i>
+                <span class="social-name">Twitter</span>
+            </a>
+            <a href="https://behance.net" target="_blank" class="social-link">
+                <i class="fab fa-behance social-icon"></i>
+                <span class="social-name">Behance</span>
+            </a>
+            <a href="https://dribbble.com" target="_blank" class="social-link">
+                <i class="fab fa-dribbble social-icon"></i>
+                <span class="social-name">Dribbble</span>
+            </a>
+            <a href="https://medium.com" target="_blank" class="social-link">
+                <i class="fab fa-medium-m social-icon"></i>
+                <span class="social-name">Medium</span>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="social-link">
+                <i class="fab fa-youtube social-icon"></i>
+                <span class="social-name">YouTube</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="social-link">
+                <i class="fab fa-instagram social-icon"></i>
+                <span class="social-name">Instagram</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
